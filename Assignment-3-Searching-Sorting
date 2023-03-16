@@ -1,0 +1,94 @@
+1)Implement Binary Search
+def binary_search(arr, x):
+  
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+arr = [1, 5, 8, 13, 25, 30, 42, 56, 89, 100]
+x = 42
+index = binary_search(arr, x)
+if index != -1:
+    print(f"{x} was found at index {index}")
+else:
+    print(f"{x} was not found in the array")
+
+2)Implement Merge Sort
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+    
+    left = merge_sort(left)
+    right = merge_sort(right)
+    
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+            
+    result += left[i:]
+    result += right[j:]
+    
+    return result
+arr = [3, 6, 1, 8, 2, 9, 4, 7, 5]
+sorted_arr = merge_sort(arr)
+print(sorted_arr)
+
+3)Implement Quick Sort
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quick_sort(left) + middle + quick_sort(right)
+
+# Example usage
+arr = [3, 6, 4, 2, 8, 1]
+sorted_arr = quick_sort(arr)
+print(sorted_arr)
+
+4)Implement Insertion Sort
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+
+
+# Example usage
+arr = [3, 6, 4, 2, 8, 1]
+sorted_arr = insertion_sort(arr)
+print(sorted_arr)
+
+5) Write a program to sort list of strings (similar to that of dictionary)
+my_list = ['apple', 'zebra', 'banana', 'orange', 'cat', 'dog']
+
+sorted_list = sorted(my_list)
+
+print(sorted_list)
